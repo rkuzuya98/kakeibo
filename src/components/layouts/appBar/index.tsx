@@ -1,9 +1,12 @@
-import { css } from "@emotion/react";
 import { getStyles } from "./getStyles";
 
-const AppBar = () => {
+export type AppBarProps = {
+  title?: string;
+};
+
+const AppBar = ({ title = "appBar" }: AppBarProps): JSX.Element => {
   const styles = getStyles();
-  return <div css={styles["root"]}>appBar</div>;
+  return <div css={styles["root"]}>{title}</div>;
 };
 
 export default AppBar;
