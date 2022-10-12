@@ -15,6 +15,8 @@
     "commitmsg": "commitlint -e $GIT_PARAMS"
   },
   "dependencies": {
+    "@emotion/babel-plugin": "^11.10.2",
+    "@emotion/react": "^11.10.4",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "next": "12.3.1",
