@@ -6,6 +6,7 @@ export default { component: AppBar } as ComponentMeta<typeof AppBar>;
 
 export const Index: ComponentStoryObj<typeof AppBar> = {
   args: {
-    title: "お名前フォーム",
+    pageTitle: "お名前フォーム",
+    ActionButton: <>ボタン</>,
   },
 };

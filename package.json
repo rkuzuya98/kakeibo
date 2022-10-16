@@ -13,8 +13,9 @@
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'",
     "prepare": "husky install",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -s public",
+    "icons": "npx @svgr/cli -d src/components/icons public/icons"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.10.2",
@@ -38,6 +39,8 @@
     "@storybook/mdx2-csf": "^0.0.3",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
+    "@svgr/cli": "^6.4.0",
+    "@svgr/webpack": "^6.4.0",
     "@types/node": "18.8.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
@@ -50,6 +53,7 @@
     "pathpida": "^0.18.1",
     "prettier": "^2.7.1",
     "sb": "^6.5.12",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "4.8.4"
   }
 }
