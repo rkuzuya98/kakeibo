@@ -1,15 +1,14 @@
 import dayjs from "dayjs";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Dom } from "./Dom";
 import { getStyles } from "./getStyles";
+import { useExpandArea } from "./useExpandArea";
+import {
+  expenseCategories,
+  ExpenseCategoryKey,
+} from "src/const/expenseCategories";
 
 type ExpenseFrequency = "monthly" | "yearly";
-
-const categoryRecord = {
-  infrastructure: "インフラ",
-};
-
-type CategoryKey = keyof typeof categoryRecord;
 
 const lastEditedTimeStamp = dayjs().unix();
 
@@ -17,38 +16,47 @@ export type ExpenseItemCardProps = {
   name: string;
   price: number;
   expenseFrequency: ExpenseFrequency;
-  categoryKey: CategoryKey;
+  expenseCategoryKey: ExpenseCategoryKey;
+};
+
+export type ExpenseItemInfo = {
+  lastEditedTime: string;
+  category: string;
+  name: string;
+  price: number;
+  cost_unit: "月" | "年";
 };
 
 export const ExpenseItemCard = ({
   name,
   price,
   expenseFrequency,
-  categoryKey,
+  expenseCategoryKey,
 }: ExpenseItemCardProps): JSX.Element => {
-  const styles = getStyles();
+  /** 開閉エリア */
+  const { expandAreaRef, expanded, toggleExpanded, expandAreaHeight } =
+    useExpandArea();
 
-  const lastEditedTime = dayjs(lastEditedTimeStamp).format("YYYY/MM/DD");
-  const category = categoryRecord[categoryKey];
-  const cost_unit = expenseFrequency === "monthly" ? "月" : "年";
+  /** 出費項目の情報 */
+  const expenseItemInfo: ExpenseItemInfo = {
+    lastEditedTime: dayjs(lastEditedTimeStamp).format("YYYY/MM/DD"),
+    category: expenseCategories[expenseCategoryKey],
+    name,
+    price,
+    cost_unit: expenseFrequency === "monthly" ? "月" : "年",
+  };
 
-  const [expanded, setExpanded] = useState<boolean>(false);
-
-  const toggleExpanded = useCallback(() => {
-    setExpanded(!expanded);
-  }, [expanded]);
+  /** スタイル */
+  const styles = getStyles(expanded, expandAreaHeight);
 
   return (
     <Dom
       {...{
         styles,
-        name,
-        price,
-        category,
-        lastEditedTime,
-        cost_unit,
+        expenseItemInfo,
         expanded,
         toggleExpanded,
+        expandAreaRef,
       }}
     />
   );

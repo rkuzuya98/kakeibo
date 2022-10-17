@@ -3,7 +3,7 @@ import { theme } from "src/styles/theme";
 
 const upperPartHeight = "44px";
 
-export const getStyles = () => {
+export const getStyles = (expanded: boolean, expandAreaHeight: number) => {
   return {
     root: css`
       padding: 12px 0px 8px;
@@ -89,6 +89,19 @@ export const getStyles = () => {
       background-color: ${theme["colors"]["neutral200"]};
     `,
 
+    centerPart: css`
+      ${expanded
+        ? css`
+            height: ${expandAreaHeight}px;
+            opacity: 1;
+          `
+        : css`
+            height: 0px;
+            opacity: 0;
+          `}
+      transition: all 0.2s 0s ease;
+    `,
+
     // 下部 ===============================================
     lowerPart: css`
       display: flex;
@@ -135,6 +148,8 @@ export const getStyles = () => {
         fill: ${theme["colors"]["neutral400"]};
         outline: ${theme["colors"]["neutral400"]};
       }
+      transform: rotate(${expanded ? "180deg" : "0"});
+      transition: all 0.4s 0s ease;
     `,
   };
 };
