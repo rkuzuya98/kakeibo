@@ -9,8 +9,8 @@ export default { component: ExpenseItemCard } as ComponentMeta<
 export const Index: ComponentStoryObj<typeof ExpenseItemCard> = {
   args: {
     name: "水道代",
-    price: 4000,
+    price: "4000",
     expenseFrequency: "monthly",
-    expenseCategoryKey: "infrastructure",
+    expenseCategoryKey: "foodCost",
   },
 };

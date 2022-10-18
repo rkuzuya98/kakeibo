@@ -14,16 +14,17 @@ const lastEditedTimeStamp = dayjs().unix();
 
 export type ExpenseItemCardProps = {
   name: string;
-  price: number;
+  price: string;
   expenseFrequency: ExpenseFrequency;
   expenseCategoryKey: ExpenseCategoryKey;
+  lastEditedTime: number;
 };
 
 export type ExpenseItemInfo = {
   lastEditedTime: string;
   category: string;
   name: string;
-  price: number;
+  price: string;
   cost_unit: "月" | "年";
 };
 
@@ -32,15 +33,20 @@ export const ExpenseItemCard = ({
   price,
   expenseFrequency,
   expenseCategoryKey,
+  lastEditedTime,
 }: ExpenseItemCardProps): JSX.Element => {
   /** 開閉エリア */
   const { expandAreaRef, expanded, toggleExpanded, expandAreaHeight } =
     useExpandArea();
 
+  // console.log(lastEditedTime)
+  // console.log(dayjs(1666104535479).format("YYYY/MM/DD"),)
+  // console.log(dayjs().valueOf())
+
   /** 出費項目の情報 */
   const expenseItemInfo: ExpenseItemInfo = {
-    lastEditedTime: dayjs(lastEditedTimeStamp).format("YYYY/MM/DD"),
-    category: expenseCategories[expenseCategoryKey],
+    lastEditedTime: dayjs(lastEditedTime).format("YYYY/MM/DD"),
+    category: expenseCategories[expenseCategoryKey]["name"],
     name,
     price,
     cost_unit: expenseFrequency === "monthly" ? "月" : "年",

@@ -1,25 +1,38 @@
-import useSWR from "swr";
-import { fetcher } from "src/swr/fetcher";
+import { useEffect, useMemo } from "react";
+import { useExpenseRegular } from "../useExpenseRegular";
+import Dom from "./Dom";
+import { getStyles } from "./getStyles";
+import { useSortRegularExpense } from "./useSortRegularExpense";
+import { ExpenseRegular } from "src/const/expenseRegular";
 
 const ExpenseCardList = (): JSX.Element => {
-  const { data } = useSWR("/expenseRegular/", fetcher);
-  const { data: a } = useSWR("/estimateExpense/", fetcher);
+  const { expenseRegular } = useExpenseRegular();
 
-  if (!data) return <></>;
-  if (!a) return <></>;
+  const {
+    sortOptions,
+    currentSortOption,
+    handleCurrentSortOption,
+    getSortedRegularExpense,
+  } = useSortRegularExpense();
 
-  const expenseTitles = Object.keys(data);
-  const as = Object.keys(a);
+  const sortedRegularExpense = useMemo(
+    () => getSortedRegularExpense(currentSortOption, expenseRegular),
+    [currentSortOption, expenseRegular, getSortedRegularExpense]
+  );
+
+  const styles = getStyles();
 
   return (
-    <div>
-      {expenseTitles.map((item) => {
-        return <div key={item}>{data[item]}</div>;
-      })}
-      {as.map((item) => {
-        return <div key={item}>{item}</div>;
-      })}
-    </div>
+    <Dom
+      {...{
+        styles,
+        expenseRegular,
+        sortOptions,
+        currentSortOption,
+        handleCurrentSortOption,
+        sortedRegularExpense,
+      }}
+    />
   );
 };
 
