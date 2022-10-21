@@ -3,11 +3,13 @@ import Dom from "./Dom";
 import { getStyles } from "./getStyles";
 
 export type AppBarProps = {
+  className?: string;
   pageTitle?: string;
   ActionButton?: React.ReactNode;
 };
 
 const AppBar = ({
+  className,
   pageTitle = "appBar",
   ActionButton = <></>,
 }: AppBarProps): JSX.Element => {
@@ -44,6 +46,7 @@ const AppBar = ({
   return (
     <Dom
       {...{
+        className,
         styles,
         pageTitle,
         ActionButton,

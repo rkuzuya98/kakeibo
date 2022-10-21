@@ -1,3 +1,4 @@
+export { default as ArrowRightIcon4 } from "./ArrowRightIcon4";
 export { default as ArrowUnderIcon4 } from "./ArrowUnderIcon4";
 export { default as ArrowUpIcon4 } from "./ArrowUpIcon4";
 export { default as HouseIcon2 } from "./HouseIcon2";
