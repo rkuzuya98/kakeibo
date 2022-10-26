@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { theme } from "src/styles/theme";
 
 export const getStyles = (rightElWidth: number, leftElWidth: number) => {
   const sideElWidth = Math.max(rightElWidth, leftElWidth);
@@ -15,9 +16,12 @@ export const getStyles = (rightElWidth: number, leftElWidth: number) => {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 60px;
+      min-height: 60px;
       padding: 0 16px;
-      box-shadow: 1px 1px #ccc;
+      box-shadow: 1px 1px #eee;
+      z-index: 100;
+      background-color: ${theme.colors.green900};
+      color: white;
     `,
 
     leftPart: css`

@@ -10,7 +10,7 @@ const Content = ({ children, className }: ContentProps): JSX.Element => {
 
   return (
     <div className={className} css={styles["root"]}>
-      {children}
+      <div css={styles["content"]}>{children}</div>
     </div>
   );
 };
