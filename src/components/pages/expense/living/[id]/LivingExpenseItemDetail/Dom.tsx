@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getStyles } from "./getStyles";
+import Breadcrumbs, { BreadcrumbsProps } from "@/components/breadcrumbs";
 import DropdownMenu, { DropdownMenuProps } from "@/components/dropdownMenu";
 import { HouseIcon2 } from "@/components/icons";
 import Table from "@/components/table";
@@ -7,27 +8,19 @@ import { pagesPath } from "src/lib/$path";
 
 export type DomProps = {
   styles: ReturnType<typeof getStyles>;
+  breadcrumbs: BreadcrumbsProps["breadcrumbs"];
   dropdownMenu: DropdownMenuProps["menu"];
   livingExpenseItemDetail: any[];
 };
 
 const Dom = ({
   styles,
+  breadcrumbs,
   dropdownMenu,
   livingExpenseItemDetail,
 }: DomProps): JSX.Element => (
   <div css={styles["root"]}>
-    <div css={styles["breadcrumbs"]}>
-      <HouseIcon2 />
-      <span>&gt;</span>
-      <Link href={pagesPath.expense.living.$url()} passHref>
-        <a>生活出費</a>
-      </Link>
-      <span>&gt;</span>
-      <Link href={pagesPath.expense.living.$url()} passHref>
-        <a>外食費</a>
-      </Link>
-    </div>
+    <Breadcrumbs {...{ breadcrumbs }} />
     <div css={styles["emoji"]}>🍽</div>
     <div css={styles["title"]}>外食費</div>
     <div css={styles["explanation"]}>

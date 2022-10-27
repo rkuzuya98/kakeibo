@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Dom from "./Dom";
 import { getStyles } from "./getStyles";
+import { BreadcrumbsProps } from "@/components/breadcrumbs";
 import { DropdownMenuProps } from "@/components/dropdownMenu";
 import { pagesPath } from "src/lib/$path";
 
@@ -32,6 +33,17 @@ const LivingExpenseItemDetail = () => {
 
   const styles = getStyles();
 
+  const breadcrumbs: BreadcrumbsProps["breadcrumbs"] = [
+    {
+      text: "生活出費",
+      href: pagesPath.expense.living.$url().pathname,
+    },
+    {
+      text: "項目じゃい",
+      href: null,
+    },
+  ];
+
   const dropdownMenu: DropdownMenuProps["menu"] = [
     {
       text: "編集",
@@ -50,6 +62,7 @@ const LivingExpenseItemDetail = () => {
     <Dom
       {...{
         styles,
+        breadcrumbs,
         dropdownMenu,
         livingExpenseItemDetail,
       }}
