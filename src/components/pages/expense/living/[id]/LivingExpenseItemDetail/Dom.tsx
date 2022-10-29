@@ -55,13 +55,13 @@ const Dom = ({
         <div css={styles["detailValue"]}>-</div>
       </div>
       {/* 記録 */}
-      <div css={styles["detail"]}>
+      {/* <div css={styles["detail"]}>
         <div css={styles["detailTitle"]}>
           <span css={styles["detailTitle_text"]}>記録</span>
           <span css={styles["detailTitle_emoji"]}>📊</span>
         </div>
         <div css={styles["detailValue"]}>24000円</div>
-      </div>
+      </div> */}
       {/* 最終更新日 */}
       <div css={styles["detail"]}>
         <div css={styles["detailTitle"]}>
